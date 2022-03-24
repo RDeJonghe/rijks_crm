@@ -1,8 +1,16 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ansi (1.5.0)
     backports (3.23.0)
+    builder (3.2.4)
     erubis (2.7.0)
+    minitest (5.15.0)
+    minitest-reporters (1.5.0)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     multi_json (1.15.0)
     nio4r (2.5.8)
     puma (5.6.2)
@@ -12,6 +20,8 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rake (13.0.6)
+    ruby-progressbar (1.11.0)
     sinatra (1.4.8)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -30,7 +40,11 @@ PLATFORMS
 
 DEPENDENCIES
   erubis
+  minitest
+  minitest-reporters
   puma
+  rack-test
+  rake
   sinatra (~> 1.4.7)
   sinatra-contrib
 
