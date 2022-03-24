@@ -1,2 +1,2 @@
-require "./rijks_gallery"
+require "./rijks_crm"
 run Sinatra::Application
