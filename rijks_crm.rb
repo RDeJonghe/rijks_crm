@@ -17,3 +17,7 @@ end
 get '/about' do
   erb :about
 end
+
+get '/inventory' do
+  erb :inventory
+end
