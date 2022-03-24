@@ -33,7 +33,8 @@ li a {
 }
 
 li a:hover {
-  background-color: #36454F
+  background-color: black
+  /* background-color: #36454F */
 }
 
 #image {
