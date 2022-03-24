@@ -1,7 +1,7 @@
 ENV["RACK_ENV"] = 'test'
 
-require 'coveralls'
-Coveralls.wear!
+# require 'coveralls'
+# Coveralls.wear!
 
 require 'minitest/autorun'
 require 'minitest/reporters'
@@ -16,5 +16,17 @@ class RijksCrmTest < Minitest::Test
 
   def app
     Sinatra::Application
+  end
+
+  def test_home_redirect
+    get '/'
+    assert_equal 302, last_response.status
+  end
+
+  def test_about_page
+    get '/about'
+    assert_equal 200, last_response.status
+    assert_equal 'text/html;charset=utf-8', last_response['Content-Type']
+    assert_includes last_response.body, "About the Rijks CRM Project!"
   end
 end
