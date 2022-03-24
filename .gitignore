@@ -1,3 +1,5 @@
 # gitignore file * is a wildcard
 
 .DS_Store
+*.DS_Store
+./*DS_Store
