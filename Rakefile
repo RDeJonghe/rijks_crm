@@ -11,7 +11,7 @@ task :git do
 end
 
 desc 'Push Merged Branch to Git'
-  task :git_push_branch do
+task :git_push_branch do
   sh 'git push -u origin main'
 end
 

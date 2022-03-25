@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.0.2"
+ruby "3.0.3"
 
 gem "sinatra", "~>1.4.7"
 gem "sinatra-contrib"
@@ -13,6 +13,8 @@ gem 'simplecov', require: false, group: :test
 gem 'rubocop'
 gem 'rubocop-minitest'
 gem 'rubocop-rake'
+gem 'erb_lint', require: false
+gem 'better_html'
 
 group :production do
   gem "puma"
