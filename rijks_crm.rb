@@ -18,6 +18,10 @@ get '/about' do
   erb :about
 end
 
+get '/clients' do
+  erb :clients
+end
+
 get '/inventory' do
   erb :inventory
 end
