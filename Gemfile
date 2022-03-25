@@ -9,6 +9,7 @@ gem 'minitest'
 gem 'minitest-reporters'
 gem 'rack-test'
 gem 'rake'
+gem 'simplecov', require: false, group: :test
 
 group :production do
   gem "puma"

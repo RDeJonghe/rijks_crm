@@ -1,7 +1,14 @@
 ENV["RACK_ENV"] = 'test'
 
-# require 'coveralls'
-# Coveralls.wear!
+# THIS WORKS BUT REPLACED BY IF STATEMENT
+# require 'simplecov'
+# SimpleCov.start
+
+if ENV['RACK_ENV'] == 'test'
+  require 'simplecov'
+  SimpleCov.start
+  puts "required simplecov in test environment"
+end
 
 require 'minitest/autorun'
 require 'minitest/reporters'
