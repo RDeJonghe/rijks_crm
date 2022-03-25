@@ -10,6 +10,9 @@ gem 'minitest-reporters'
 gem 'rack-test'
 gem 'rake'
 gem 'simplecov', require: false, group: :test
+gem 'rubocop'
+gem 'rubocop-minitest'
+gem 'rubocop-rake'
 
 group :production do
   gem "puma"

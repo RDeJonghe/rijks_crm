@@ -16,8 +16,7 @@ Minitest::Reporters.use!
 
 require 'rack/test'
 
-require_relative '../rijks_crm.rb'
-
+require_relative '../rijks_crm'
 
 class RijksCrmTest < Minitest::Test
   include Rack::Test::Methods
