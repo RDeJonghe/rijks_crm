@@ -25,3 +25,11 @@ end
 get '/inventory' do
   erb :inventory
 end
+
+get '/admin' do
+  erb :admin
+end
+
+get '/interactions' do
+  erb :interactions
+end

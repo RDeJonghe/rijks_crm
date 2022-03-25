@@ -48,11 +48,27 @@ class RijksCrmTest < Minitest::Test
     assert_includes last_response.body, "Artist Inventory"
   end
 
-  def test_inventory_page
+  def test_clients_page
     skip
     get '/clients'
     assert_equal 200, last_response.status
     assert_equal 'text/html;charset=utf-8', last_response['Content-Type']
     assert_includes last_response.body, "All Clients"
+  end
+
+  def test_admin_page
+    skip
+    get '/admin'
+    assert_equal 200, last_response.status
+    assert_equal 'text/html;charset=utf-8', last_response['Content-Type']
+    assert_includes last_response.body, "Administration features coming soon..."
+  end
+
+  def test_interactions_page
+    skip
+    get '/interactions'
+    assert_equal 200, last_response.status
+    assert_equal 'text/html;charset=utf-8', last_response['Content-Type']
+    assert_includes last_response.body, "Interactions"
   end
 end
