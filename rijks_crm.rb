@@ -10,6 +10,17 @@ configure do
   # rubocop:enable Style/HashSyntax
 end
 
+helpers do
+  def clients?
+    @clients.empty?
+  end
+end
+
+before do
+  session[:clients] ||= []
+  session[:interactions] ||= []
+end
+
 get '/' do
   redirect '/about'
 end
@@ -19,6 +30,8 @@ get '/about' do
 end
 
 get '/clients' do
+  @clients = session[:clients]
+
   erb :clients
 end
 
