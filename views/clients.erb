@@ -5,6 +5,9 @@
   <a class="right" href="/clients/client_new"><button>Create New Client</button></a>
 </h2>
 <br>
-<p>
-  <%= @clients %>
-</p>
+
+<% if !clients? %>
+  <p>
+    There are no clients, create a new client.
+  </p>
+<% end %>

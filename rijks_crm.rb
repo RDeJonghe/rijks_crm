@@ -12,7 +12,7 @@ end
 
 helpers do
   def clients?
-    @clients.empty?
+    @clients.any?
   end
 end
 
@@ -31,6 +31,7 @@ end
 
 get '/clients' do
   @clients = session[:clients]
+  @data = 'goonies'
 
   erb :clients
 end

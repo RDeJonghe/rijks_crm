@@ -10,6 +10,11 @@ task :git do
   sh 'git push -u origin main'
 end
 
+desc 'Push Merged Branch to Git'
+  task :git_push_branch
+  sh 'git push -u origin main'
+end
+
 desc 'Rubocop Main File'
 task :cop do
   sh 'rubocop rijks_crm.rb'
