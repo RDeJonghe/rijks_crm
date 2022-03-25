@@ -2,6 +2,8 @@ body {
   background-color: lightgrey;
 }
 
+/* Formatting for the header image with icons */
+
 #crm_name {
   font-family: 'Josefin Sans', sans-serif;
   font-family: 'Lato', sans-serif;
@@ -40,4 +42,11 @@ li a:hover {
 #image {
   display: block;
   text-decoration: none;
+}
+
+/* Formatting for the Content Info on top of each page - title of content info and navigation buttons */
+
+h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
