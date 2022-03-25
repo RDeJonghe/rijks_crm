@@ -22,6 +22,17 @@ get '/clients' do
   erb :clients
 end
 
+get '/clients/client_new' do
+  erb :client_new
+end
+
+get '/interactions' do
+  erb :interactions
+end
+
+get '/interactions/interaction_new' do
+  erb :interaction_new
+end
 get '/inventory' do
   erb :inventory
 end
@@ -30,6 +41,3 @@ get '/admin' do
   erb :admin
 end
 
-get '/interactions' do
-  erb :interactions
-end

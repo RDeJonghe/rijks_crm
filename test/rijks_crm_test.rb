@@ -70,4 +70,20 @@ class RijksCrmTest < Minitest::Test
     assert_equal 'text/html;charset=utf-8', last_response['Content-Type']
     assert_includes last_response.body, "Interactions"
   end
+
+  def test_interaction_new_page
+    skip
+    get '/interactions/interaction_new'
+    assert_equal 200, last_response.status
+    assert_equal 'text/html;charset=utf-8', last_response['Content-Type']
+    assert_includes last_response.body, "Add New Interaction"
+  end
+
+  def test_client_new_page
+    skip
+    get '/clients/client_new'
+    assert_equal 200, last_response.status
+    assert_equal 'text/html;charset=utf-8', last_response['Content-Type']
+    assert_includes last_response.body, "Add New Client"
+  end
 end
