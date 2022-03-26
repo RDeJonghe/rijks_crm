@@ -1,4 +1,5 @@
 <!-- page with list of all clients -->
+<!-- when listing each client can first sort by last name -->
 
 <h2>
   All Clients
@@ -10,4 +11,11 @@
   <p>
     There are no clients, create a new client.
   </p>
+<% else %>
+  <% @clients.each do |client| %>
+    <p><%= last_name_comma_first_name(client) %></p>
+  <% end %>
 <% end %>
+
+<br>
+<!-- <%= @params_info %>  -->

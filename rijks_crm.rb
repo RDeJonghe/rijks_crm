@@ -14,6 +14,10 @@ helpers do
   def clients?
     @clients.any?
   end
+
+  def last_name_comma_first_name(client)
+    "#{client[:client_last]}, #{client[:client_first]}"
+  end
 end
 
 before do
@@ -31,9 +35,15 @@ end
 
 get '/clients' do
   @clients = session[:clients]
-  @data = 'goonies'
+
+  # @params_info = params
 
   erb :clients
+end
+
+post '/clients' do
+  session[:clients] << { client_first: params[:client_first], client_last: params[:client_last], client_info: [] }
+  redirect '/clients'
 end
 
 get '/clients/client_new' do
