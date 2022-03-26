@@ -34,13 +34,13 @@ get '/about' do
 end
 
 get '/clients' do
-  @clients = session[:clients]
+  @clients = session[:clients].sort_by { |client| [client[:client_last], client[:client_first]] }
 
   erb :clients
 end
 
 post '/clients' do
-  session[:clients] << { client_first: params[:client_first], client_last: params[:client_last], client_info: [] }
+  session[:clients] << { client_first: params[:client_first].capitalize, client_last: params[:client_last].capitalize, client_info: [] }
   redirect '/clients'
 end
 
