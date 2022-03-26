@@ -20,19 +20,19 @@ body {
     background-color: #2779BF
 }
 
-/* it may be a good idea to rename all of these ul, li, etc. these are only used in icons header, there will be other ul, li areas that will have different classes, maybe make more specific. */
-ul {
+/* general ul and li changed to header_ul and header_li so as not to interfere with other ul / li used on other pages. The header is very specific and made so like this. Changes also made for li a and li a:hover. Made specific */
+.header_ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: darkgrey;
 }
 
-li {
+.header_li {
   float: left;
 }
 
-li a {
+.header_li_a {
   display: block;
   color: white;
   text-align: center;
@@ -40,7 +40,7 @@ li a {
   text-decoration: none;
 }
 
-li a:hover {
+.header_li_a:hover {
   /* background-color: black */
   background-color: #2779BF
 }
@@ -90,4 +90,24 @@ p {
 .cancel {
   float: right;
   padding-right: 10px;
+}
+
+/* formatting for all regular lists (not the header) right now these are for the list of client names */
+
+.clients_ul {
+  list-style-type: none;
+}
+
+.list_item {
+  color: black;
+  list-style-type: '$ ';
+}
+
+.list_item:hover {
+  color: green;
+}
+
+.name_list {
+  color: black; /* makes anchor color black instead of default blueish */
+  text-decoration: none; /* removes underline from anchor */
 }

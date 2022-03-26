@@ -1,20 +1,23 @@
 <!-- page with list of all clients -->
-<!-- when listing each client can first sort by last name -->
+<!-- right now link is just redirecting to home. this will redirect to their info page eventually -->
 
 <h2>
   All Clients
   <a class="right" href="/clients/client_new"><button>Create New Client</button></a>
 </h2>
-<br>
 
 <% if !clients? %>
   <p>
     There are no clients, create a new client.
   </p>
 <% else %>
+  <ul>
   <% @clients.each do |client| %>
-    <p><%= last_name_comma_first_name(client) %></p>
+    <li class="list_item"><a class="name_list" href='/about'><%= last_name_comma_first_name(client) %></a></li>
   <% end %>
+  </ul>
 <% end %>
 
 <br>
+
+
