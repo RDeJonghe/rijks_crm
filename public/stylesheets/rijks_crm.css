@@ -20,6 +20,7 @@ body {
     background-color: #2779BF
 }
 
+/* it may be a good idea to rename all of these ul, li, etc. these are only used in icons header, there will be other ul, li areas that will have different classes, maybe make more specific. */
 ul {
   margin: 0;
   padding: 0;
@@ -58,6 +59,7 @@ h2 {
   margin-left: 10px;
 }
 
+/* # this is also used for the cancel button on the new_client page, so it's consistent with content info in general */
 .right {
   float: right;
   padding-right: 10px;
@@ -67,4 +69,25 @@ h2 {
 
 p {
   padding-left: 20px;
+}
+
+/* Formatting for fields on a form that will submit data */
+
+.field_question {
+  margin-left: 20px;
+}
+
+.field_data {
+  margin-left: 40px;
+}
+
+/* formatting for all submit buttons */
+.submit {
+  margin-left: 20px;
+}
+
+/* formatting for all cancel buttons */
+.cancel {
+  float: right;
+  padding-right: 10px;
 }

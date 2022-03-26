@@ -1,12 +1,22 @@
 <!-- page to add a new client -->
 
-<h2>Add New Client</h2>
+<h2>Add New Client
+<a class="cancel" href="/clients"><button>Cancel</button></a>
+</h2>
 <br>
 <form action="/clients" method="POST">
-  <label for="client_first">Enter the first name of the client:</label>
-  <input name="client_first" type="text" required>
-  <label for="client_last">Enter the last name of the client:</label>
-  <input name="client_last" type="text" required>
-  <input type="submit" value="Create New Client"> 
+  <label class="field_question" for="client_first">Enter the first name of the client:</label>
+  <br>
+  <br>
+  <input class="field_data" name="client_first" type="text" required>
+  <br>
+  <br>
+  <label class="field_question" for="client_last">Enter the last name of the client:</label>
+  <br>
+  <br>
+  <input class="field_data" name="client_last" type="text" required>
+  <br>
+  <br>
+  <br>
+  <input class="submit" type="submit" value="Create New Client"> 
 </form>
-  <a href="/clients"><button>Cancel</button></a>

@@ -36,8 +36,6 @@ end
 get '/clients' do
   @clients = session[:clients]
 
-  # @params_info = params
-
   erb :clients
 end
 
