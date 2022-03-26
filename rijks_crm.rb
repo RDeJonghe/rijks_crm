@@ -23,6 +23,7 @@ end
 before do
   session[:clients] ||= []
   session[:interactions] ||= []
+  session[:client_num] ||= 0
 end
 
 get '/' do
@@ -40,7 +41,13 @@ get '/clients' do
 end
 
 post '/clients' do
-  session[:clients] << { client_first: params[:client_first].capitalize, client_last: params[:client_last].capitalize, client_info: [] }
+  session[:client_num] += 1
+  session[:clients] << {
+    client_num: session[:client_num],
+    client_first: params[:client_first].capitalize,
+    client_last: params[:client_last].capitalize,
+    client_info: []
+  }
   redirect '/clients'
 end
 
