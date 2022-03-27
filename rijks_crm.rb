@@ -15,6 +15,7 @@ def find_current_client
   session[:clients].select do |client|
     client[:client_num] == @client_num
   end
+  .first
 end
 
 helpers do
@@ -22,15 +23,34 @@ helpers do
     @clients.any?
   end
 
+  def email?
+    @current_client[:email].size > 0
+  end
+
+  def phone?
+    @current_client[:phone].size > 0
+  end
+
+  def address?
+    (@current_client[:address][:street].size > 0) &&
+    (@current_client[:address][:city].size > 0) &&
+    (@current_client[:address][:state].size > 0) &&
+    (@current_client[:address][:postal].size > 0)
+  end
+
+  def notes?
+    @current_client[:notes].size > 0
+  end
+
   def last_name_comma_first_name(client)
     "#{client[:client_last]}, #{client[:client_first]}"
   end
+
 end
 
 before do
   session[:clients] ||= []
   session[:interactions] ||= []
-  # session[:client_num] ||= 1
 end
 
 get '/' do
@@ -48,13 +68,14 @@ get '/clients' do
 end
 
 post '/clients' do
-  # new_client_num = session[:client_num].dup
-  # session[:client_num] += 1
   session[:clients] << {
     client_num: SecureRandom.hex(10),
-    client_first: params[:client_first].capitalize,
-    client_last: params[:client_last].capitalize,
-    client_info: []
+    client_first: params[:client_first].capitalize.strip,
+    client_last: params[:client_last].capitalize.strip,
+    address: { street: "", city: "", state: "", postal: "" },
+    email: "",
+    phone: "",
+    notes: ""
   }
   redirect '/clients'
 end

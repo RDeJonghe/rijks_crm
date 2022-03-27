@@ -4,4 +4,33 @@
   Client Information
   <a class="right" href="/clients"><button>All Clients</button></a>
 </h2>
-<p><%= @current_client %></p>
+<p>Current Client selected hash: <%= @current_client %></p>
+<br>
+<h3>Name</h3>
+  <p><%= "#{@current_client[:client_first]} #{@current_client[:client_last]}" %></p> 
+<h3>Email</h3>
+  <% if !email? %>
+    <p>No email on file.</p>
+  <% else %>
+    <p><%= @current_client[:email] %></p>
+  <% end %>
+<h3>Phone</h3>
+  <% if !phone? %>
+    <p>No phone number on file.</p>
+  <% else %>
+    <p><%= @current_client[:phone] %></p>
+  <% end %>
+<h3>Address</h3>
+  <% if !address? %>
+    <p>No address on file.</p>
+  <% else %>
+    <p><%= @current_client[:address][:street] %></p>
+    <p><%= "#{@current_client[:address][:city]}, #{@current_client[:address][:state]}" %></p>
+    <p><%= @current_client[:address][:postal] %></p>
+  <% end %>
+<h3>Notes</h3>
+  <% if !notes? %>
+    <p>No notes file.</p>
+  <% else %>
+    <p><%= @current_client[:notes] %></p>
+  <% end %>

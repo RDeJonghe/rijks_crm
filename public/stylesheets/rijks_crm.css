@@ -111,3 +111,10 @@ p {
   color: black; /* makes anchor color black instead of default blueish */
   text-decoration: none; /* removes underline from anchor */
 }
+
+/* formatting for h3, this is used as a header for name, email, etc for client info also will be used for art info */
+
+h3 {
+  color: #2779BF;
+  margin-left: 10px;
+}
