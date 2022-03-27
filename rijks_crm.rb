@@ -1,6 +1,7 @@
 require "sinatra"
 require "sinatra/reloader" if development?
 require "tilt/erubis"
+require "securerandom"
 
 configure do
   enable :sessions
@@ -8,6 +9,12 @@ configure do
   # rubocop:disable Style/HashSyntax
   set :erb, :escape_html => true
   # rubocop:enable Style/HashSyntax
+end
+
+def find_current_client
+  session[:clients].select do |client|
+    client[:client_num] == @client_num
+  end
 end
 
 helpers do
@@ -23,7 +30,7 @@ end
 before do
   session[:clients] ||= []
   session[:interactions] ||= []
-  session[:client_num] ||= 0
+  # session[:client_num] ||= 1
 end
 
 get '/' do
@@ -41,9 +48,10 @@ get '/clients' do
 end
 
 post '/clients' do
-  session[:client_num] += 1
+  # new_client_num = session[:client_num].dup
+  # session[:client_num] += 1
   session[:clients] << {
-    client_num: session[:client_num],
+    client_num: SecureRandom.hex(10),
     client_first: params[:client_first].capitalize,
     client_last: params[:client_last].capitalize,
     client_info: []
@@ -56,6 +64,8 @@ get '/clients/client_new' do
 end
 
 get '/clients/:client_num' do
+  @client_num = params[:client_num]
+  @current_client = find_current_client
   
   erb :client_info
 end
