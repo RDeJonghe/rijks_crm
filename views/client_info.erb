@@ -23,7 +23,7 @@
   <% end %>
 <h3>Address</h3>
   <% if !address? %>
-    <p>No address on file.</p>
+    <p>No address on file or a complete address needed.</p>
   <% else %>
     <p><%= @current_client[:address][:street] %></p>
     <p><%= "#{@current_client[:address][:city]}, #{@current_client[:address][:state]}" %></p>

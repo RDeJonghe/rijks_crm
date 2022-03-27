@@ -80,7 +80,7 @@ post '/clients' do
       state: params[:state],
       postal: params[:postal]
     },
-    notes: ""
+    notes: params[:notes]
   }
   redirect '/clients'
 end
@@ -100,6 +100,7 @@ end
 get '/clients/:client_num/edit' do
   @client_num = params[:client_num]
   @current_client = find_current_client
+  puts @current_client[:notes]
 
   erb :client_edit
 end
@@ -116,6 +117,7 @@ post '/clients/:client_num' do
   @current_client[:address][:city] = params[:city]
   @current_client[:address][:state] = params[:state]
   @current_client[:address][:postal] = params[:postal]
+  @current_client[:notes] = params[:notes]
 
   redirect "/clients/#{@client_num}"
 end
