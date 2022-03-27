@@ -90,6 +90,7 @@ get '/clients/client_new' do
 end
 
 get '/clients/:client_num' do
+  @all = session[:clients]
   @client_num = params[:client_num]
   @current_client = find_current_client
   
@@ -101,6 +102,22 @@ get '/clients/:client_num/edit' do
   @current_client = find_current_client
 
   erb :client_edit
+end
+
+post '/clients/:client_num' do
+  @client_num = params[:client_num]
+  @current_client = find_current_client
+
+  @current_client[:client_first] = params[:client_first]
+  @current_client[:client_last] = params[:client_last]
+  @current_client[:email] = params[:email]
+  @current_client[:phone] = params[:phone]
+  @current_client[:address][:street] = params[:street]
+  @current_client[:address][:city] = params[:city]
+  @current_client[:address][:state] = params[:state]
+  @current_client[:address][:postal] = params[:postal]
+
+  redirect "/clients/#{@client_num}"
 end
 
 get '/interactions' do

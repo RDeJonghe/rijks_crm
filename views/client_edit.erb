@@ -1,3 +1,60 @@
 <!-- page for editing info for a client -->
 
 <h2>Edit Client Information</h2>
+<a class="cancel" href="/clients/<%= @client_num%>"><button>Cancel</button></a>
+</h2>
+<form action="/clients/<%= @client_num %>" method="POST">
+  <h3>Name</h3>
+  <label class="field_question" for="client_first">First Name</label>
+  <br>
+  <br>
+  <input class="field_data" name="client_first" type="text" value="<%= @current_client[:client_first] %>" required>
+  <br>
+  <br>
+  <label class="field_question" for="client_last">Last Name</label>
+  <br>
+  <br>
+  <input class="field_data" name="client_last" type="text" value="<%= @current_client[:client_last] %>" required>
+  <br>
+  <h3>Contact</h3>
+  <label class="field_question" for="email">Email</label>
+  <br>
+  <br>
+  <input class="field_data" name="email" type="text" required value="<%= @current_client[:email] %>">
+  <br>
+  <br>
+  <label class="field_question" for="phone">Phone</label>
+  <br>
+  <br>
+  <input class="field_data" name="phone" type="text" value="<%= @current_client[:phone] %>"required>
+  <br>
+  <h3>Address</h3>
+  <label class="field_question" for="street">Street</label>
+  <br>
+  <br>
+  <input class="field_data" name="street" type="text" value="<%= @current_client[:address][:street] %>" required>
+  <br>
+  <br>
+  <label class="field_question" for="city">City</label>
+  <br>
+  <br>
+  <input class="field_data" name="city" type="text" value="<%= @current_client[:address][:city] %>" required>
+  <br>
+  <br>
+  <label class="field_question" for="state">State</label>
+  <br>
+  <br>
+  <input class="field_data" name="state" type="text" value="<%= @current_client[:address][:state] %>" required>
+  <br>
+  <br>
+  <label class="field_question" for="postal">Postal Zip Code</label>
+  <br>
+  <br>
+  <input class="field_data" name="postal" type="text" value="<%= @current_client[:address][:postal] %>" required>
+  <br>
+  <br>
+  <br>
+  <input class="submit" type="submit" value="Update Client Information"> 
+</form>
+<br>
+<br>
