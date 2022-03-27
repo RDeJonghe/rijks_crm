@@ -96,6 +96,13 @@ get '/clients/:client_num' do
   erb :client_info
 end
 
+get '/clients/:client_num/edit' do
+  @client_num = params[:client_num]
+  @current_client = find_current_client
+
+  erb :client_edit
+end
+
 get '/interactions' do
   erb :interactions
 end
