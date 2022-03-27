@@ -118,3 +118,10 @@ h3 {
   color: #2779BF;
   margin-left: 10px;
 }
+
+/* test formatting for contact info page to make 2 columsn */
+
+#second_col {
+  float: right;
+  margin-right: 800px;
+}

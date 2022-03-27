@@ -72,9 +72,14 @@ post '/clients' do
     client_num: SecureRandom.hex(10),
     client_first: params[:client_first].capitalize.strip,
     client_last: params[:client_last].capitalize.strip,
-    address: { street: "", city: "", state: "", postal: "" },
-    email: "",
-    phone: "",
+    email: params[:email],
+    phone: params[:phone],
+    address: { 
+      street: params[:street],
+      city: params[:city],
+      state: params[:state],
+      postal: params[:postal]
+    },
     notes: ""
   }
   redirect '/clients'
