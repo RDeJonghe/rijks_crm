@@ -1,3 +1,9 @@
 <!-- inventory page -->
 
 <h2>Artist Inventory</h2>
+<h3>Artists</h3>
+<ul>
+  <% ARTISTS.each do |artist| %>
+    <li><a href='/inventory/<%= artist[:abrv_name] %>'><%= artist[:full_name] %></li>
+  <% end %>
+</ul>

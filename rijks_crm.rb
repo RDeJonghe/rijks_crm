@@ -11,6 +11,13 @@ configure do
   # rubocop:enable Style/HashSyntax
 end
 
+ARTISTS = [
+  { abrv_name: "bosch", full_name: "Jheronimus Bosch" },
+  { abrv_name: "rembrandt", full_name: "Rembrandt van Rijn" },
+  { abrv_name: "ter_brugghen", full_name: "Hendrick ter Brugghen" },
+  { abrv_name: "van_gogh", full_name: "Vincent van Gogh"}
+]
+
 def find_current_client
   session[:clients].select do |client|
     client[:client_num] == @client_num
@@ -44,6 +51,13 @@ helpers do
 
   def last_name_comma_first_name(client)
     "#{client[:client_last]}, #{client[:client_first]}"
+  end
+
+  def artist_full_name
+    ARTISTS.select do |artist|
+      artist[:abrv_name] == @artist_abrv
+    end
+    .first[:full_name]
   end
 
 end
@@ -129,8 +143,15 @@ end
 get '/interactions/interaction_new' do
   erb :interaction_new
 end
+
 get '/inventory' do
   erb :inventory
+end
+
+get '/inventory/:artist_abrv' do
+  @artist_abrv = params[:artist_abrv]
+
+  erb :works
 end
 
 get '/admin' do
