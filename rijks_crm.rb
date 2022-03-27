@@ -55,6 +55,11 @@ get '/clients/client_new' do
   erb :client_new
 end
 
+get '/clients/:client_num' do
+  
+  erb :client_info
+end
+
 get '/interactions' do
   erb :interactions
 end
