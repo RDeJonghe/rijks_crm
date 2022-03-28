@@ -26,16 +26,117 @@ def find_current_client
   .first
 end
 
-class VanGogh
-  API_CALL = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Vincent+van+Gogh&imgonly=True&p=0-9999&s=chronologic')
 
-  VAN_GOGH_ART_OBJECTS = JSON.parse(API_CALL.body)["artObjects"]
 
-  def self.api_call
-    response = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Vincent+van+Gogh&imgonly=True&p=0-9999&s=chronologic')
-    
-    response 
+class Bosch
+  BOSCH_API_CALL = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Jheronimus+Bosch&imgonly=True&p=0-9999&s=chronologic')
+
+  BOSCH_ART_OBJECTS = JSON.parse(BOSCH_API_CALL.body)["artObjects"]
+
+  def titles
+    BOSCH_ART_OBJECTS.each_with_object([]) do |art_obj, results|
+      results << { title: art_obj["title"], id: art_obj["id"] }
+    end
   end
+
+  def image(id)
+    BOSCH_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["webImage"]["url"]
+  end
+
+  def work_title(id)
+    BOSCH_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["title"]
+  end
+
+  def produced(id)
+    BOSCH_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["longTitle"]
+    .split(", ")
+    .last
+  end
+end
+
+class Rembrandt
+  REMBRANDT_API_CALL = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Rembrandt+van+Rijn&imgonly=True&p=0-9999&s=chronologic')
+
+  REMBRANDT_ART_OBJECTS = JSON.parse(REMBRANDT_API_CALL.body)["artObjects"]
+
+  def titles
+    REMBRANDT_ART_OBJECTS.each_with_object([]) do |art_obj, results|
+      results << { title: art_obj["title"], id: art_obj["id"] }
+    end
+  end
+
+  def image(id)
+    REMBRANDT_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["webImage"]["url"]
+  end
+
+  def work_title(id)
+    REMBRANDT_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["title"]
+  end
+
+  def produced(id)
+    REMBRANDT_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["longTitle"]
+    .split(", ")
+    .last
+  end
+end
+
+class TerBrugghen
+  TER_BRUGGHEN_API_CALL = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Rembrandt+van+Rijn&imgonly=True&p=0-9999&s=chronologic')
+
+  TER_BRUGGHEN_ART_OBJECTS = JSON.parse(TER_BRUGGHEN_API_CALL.body)["artObjects"]
+
+  def titles
+    TER_BRUGGHEN_ART_OBJECTS.each_with_object([]) do |art_obj, results|
+      results << { title: art_obj["title"], id: art_obj["id"] }
+    end
+  end
+
+  def image(id)
+    TER_BRUGGHEN_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["webImage"]["url"]
+  end
+
+  def work_title(id)
+    TER_BRUGGHEN_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["title"]
+  end
+
+  def produced(id)
+    TER_BRUGGHEN_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["longTitle"]
+    .split(", ")
+    .last
+  end
+end
+
+class VanGogh
+  VAN_GOGH_API_CALL = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Vincent+van+Gogh&imgonly=True&p=0-9999&s=chronologic')
+
+  VAN_GOGH_ART_OBJECTS = JSON.parse(VAN_GOGH_API_CALL.body)["artObjects"]
 
   def titles
     VAN_GOGH_ART_OBJECTS.each_with_object([]) do |art_obj, results|
@@ -101,7 +202,6 @@ helpers do
     end
     .first[:full_name]
   end
-
 end
 
 before do
@@ -193,11 +293,13 @@ end
 get '/inventory/:artist_abrv' do
   @artist_abrv = params[:artist_abrv]
 
-  # TESTING FOR AN API CALL - NEED TO AUTOMATE BY ARTIST 
-  # response = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Vincent+van+Gogh&imgonly=True&p=0-9999&s=chronologic')
-  # @body = response.body
-
-  if @artist_abrv = "van_gogh"
+  if @artist_abrv == "bosch"
+    @titles_info = Bosch.new.titles
+  elsif @artist_abrv == "rembrandt"
+    @titles_info = Rembrandt.new.titles
+  elsif @artist_abrv == "ter_brugghen"
+    @titles_info = TerBrugghen.new.titles
+  elsif @artist_abrv == "van_gogh"
     @titles_info = VanGogh.new.titles
   end
 
