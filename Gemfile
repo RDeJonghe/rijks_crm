@@ -15,6 +15,7 @@ gem 'rubocop-minitest'
 gem 'rubocop-rake'
 gem 'erb_lint', require: false
 gem 'better_html'
+gem 'httparty'
 
 group :production do
   gem "puma"

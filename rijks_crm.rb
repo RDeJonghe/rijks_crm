@@ -2,6 +2,7 @@ require "sinatra"
 require "sinatra/reloader" if development?
 require "tilt/erubis"
 require "securerandom"
+require "httparty"
 
 configure do
   enable :sessions
@@ -150,6 +151,11 @@ end
 
 get '/inventory/:artist_abrv' do
   @artist_abrv = params[:artist_abrv]
+
+  # TESTING FOR AN API CALL - NEED TO AUTOMATE BY ARTIST
+  response = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Vincent+van+Gogh&imgonly=True&p=0-9999&s=chronologic')
+  @body = response.body
+
 
   erb :works
 end
