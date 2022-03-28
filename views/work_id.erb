@@ -4,7 +4,17 @@
   <%= @title %>
   <a class="right" href="/inventory"><button>Inventory - All Artists</button></a>
 </h2>
-
-<p><%= @produced %></p>
-<p><%= @image %></p>
-<p><%= artist_full_name %></p>
+<div>
+  <div class="info_block">
+    <h3>Involved Maker / Artist</h3>
+    <p><%= artist_full_name %></p>
+    <h3>Title</h3>
+    <p><%= @title %></p>
+    <h3>Produced</h3>
+    <p><%= @produced %></p>
+  </div>
+  <div class="painting">
+    <img src="<%= @image %>" height=auto width=800px alt="collection image"/>
+    
+  </div>
+</div>
