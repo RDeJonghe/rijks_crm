@@ -132,3 +132,26 @@ h3 {
 /* .paintbrush {
   list-style-image: url('../icons')
 } */
+
+
+/* formatting for the work of art page with painting image */
+
+
+.painting {
+  /* display: inline-block; */
+  float: right;
+  /* margin-left: 60%; */
+  background-color: darkgrey;
+  padding: 10px;
+  margin-right: 30px;
+}
+
+.info {
+  text-indent: 2%
+}
+
+.info_block {
+  float: left;
+  width: 400px;
+  margin-left: 20px;
+}
