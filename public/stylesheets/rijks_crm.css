@@ -144,14 +144,15 @@ h3 {
   background-color: darkgrey;
   padding: 10px;
   margin-right: 30px;
+  margin-top: 20px;
 }
 
 .info {
-  text-indent: 2%
+  text-indent: 2%;
 }
 
 .info_block {
   float: left;
   width: 400px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }

@@ -1,7 +1,6 @@
 <!-- inventory page -->
 
 <h2>Artist Inventory</h2>
-<h3>Artists</h3>
 <ul>
   <% ARTISTS.each do |artist| %>
     <li class="list_item" ><a class="name_list" href='/inventory/<%= artist[:abrv_name] %>'><%= artist[:full_name] %></li>
