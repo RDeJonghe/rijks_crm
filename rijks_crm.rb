@@ -26,6 +26,47 @@ def find_current_client
   .first
 end
 
+class VanGogh
+  API_CALL = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Vincent+van+Gogh&imgonly=True&p=0-9999&s=chronologic')
+
+  VAN_GOGH_ART_OBJECTS = JSON.parse(API_CALL.body)["artObjects"]
+
+  def self.api_call
+    response = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Vincent+van+Gogh&imgonly=True&p=0-9999&s=chronologic')
+    
+    response 
+  end
+
+  def titles
+    VAN_GOGH_ART_OBJECTS.each_with_object([]) do |art_obj, results|
+      results << { title: art_obj["title"], id: art_obj["id"] }
+    end
+  end
+
+  def image(id)
+    VAN_GOGH_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["webImage"]["url"]
+  end
+
+  def work_title(id)
+    VAN_GOGH_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["title"]
+  end
+
+  def produced(id)
+    VAN_GOGH_ART_OBJECTS.select do |art_obj|
+      art_obj["id"] == id
+    end
+    .first["longTitle"]
+    .split(", ")
+    .last
+  end
+end
+
 helpers do
   def clients?
     @clients.any?
@@ -153,8 +194,12 @@ get '/inventory/:artist_abrv' do
   @artist_abrv = params[:artist_abrv]
 
   # TESTING FOR AN API CALL - NEED TO AUTOMATE BY ARTIST 
-  response = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Vincent+van+Gogh&imgonly=True&p=0-9999&s=chronologic')
-  @body = response.body
+  # response = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Vincent+van+Gogh&imgonly=True&p=0-9999&s=chronologic')
+  # @body = response.body
+
+  if @artist_abrv = "van_gogh"
+    @titles_info = VanGogh.new.titles
+  end
 
 
   erb :works

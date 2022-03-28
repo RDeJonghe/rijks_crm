@@ -11,10 +11,6 @@ class VanGogh
     
     response 
   end
-  
-  def info
-    VAN_GOGH_ART_OBJECTS
-  end
 
   def titles
     VAN_GOGH_ART_OBJECTS.each_with_object([]) do |art_obj, results|

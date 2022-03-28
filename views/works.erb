@@ -4,4 +4,13 @@
   Works of <%= artist_full_name %>
   <a class="right" href="/inventory"><button>Inventory - All Artists</button></a>
 </h2>
-<p><%= @body %>
+<ul>
+  <% @titles_info.each do |info| %>
+    <li class="list_item"><a class="name_list" href='/inventory/<%= @artist_abrv %>/<%= info[:id] %>'><%= info[:title] %></a></li>
+  <% end %>
+</ul>
+
+
+
+
+
