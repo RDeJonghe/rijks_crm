@@ -26,6 +26,13 @@ def find_current_client
   .first
 end
 
+def find_current_interaction
+  session[:interactions].select do |interaction|
+    interaction[:id] == @interaction_id
+  end
+  .first
+end
+
 class Bosch
   BOSCH_API_CALL = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Jheronimus+Bosch&imgonly=True&p=0-9999&s=chronologic')
 
@@ -303,6 +310,13 @@ post '/interactions' do
     comments: params[:comments]
   }
   redirect '/interactions'
+end
+
+get '/interactions/:interaction_id' do
+  @interaction_id = params[:interaction_id]
+  @current_interaction = find_current_interaction
+
+  erb :interaction_id
 end
 
 get '/inventory' do
