@@ -26,8 +26,6 @@ def find_current_client
   .first
 end
 
-
-
 class Bosch
   BOSCH_API_CALL = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Jheronimus+Bosch&imgonly=True&p=0-9999&s=chronologic')
 
@@ -303,10 +301,30 @@ get '/inventory/:artist_abrv' do
     @titles_info = VanGogh.new.titles
   end
 
-
   erb :works
 end
 
+
+get '/inventory/:artist_abrv/:work_id' do
+  @artist_abrv = params[:artist_abrv]
+  work_id = params[:work_id]
+
+  if @artist_abrv == "bosch"
+    artist_obj = Bosch.new
+  elsif @artist_abrv == "rembrandt"
+    artist_obj = Rembrandt.new
+  elsif @artist_abrv == "ter_brugghen"
+    artist_obj = TerBrugghen.new
+  elsif @artist_abrv == "van_gogh"
+    artist_obj = VanGogh.new
+  end
+
+  @title = artist_obj.work_title(work_id)
+  @produced = artist_obj.produced(work_id)
+  @image = artist_obj.image(work_id)
+
+  erb :work_id
+end
 get '/admin' do
   erb :admin
 end
