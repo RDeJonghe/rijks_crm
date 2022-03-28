@@ -1,3 +1,48 @@
 <!-- page to add a new interaction -->
 
-<h2>Add New Interaction</h2>
+<h2>Add New Interaction
+<a class="cancel" href="/interactions"><button>Cancel</button></a>
+</h2>
+<form action="/interactions" method="POST">
+  <h3>Interaction Information</h3>
+  <label class="field_question" for="client_first">First Name</label>
+  <br>
+  <br>
+  <input class="field_data" name="client_first" type="text" required>
+  <br>
+  <br>
+  <label class="field_question" for="client_last">Last Name</label>
+  <br>
+  <br>
+  <input class="field_data" name="client_last" type="text" required>
+  <br>
+  <br>
+
+  <label class="field_question" for="type">Interaction Type</label>
+  <br>
+  <br>
+  <select class="field_data" name="type" required>
+    <option value="email">Email</option>
+    <option value="phone">Phone</option>
+    <option value="meeting">Meeting</option>
+    <option value="notes">Notes</notes>
+  </select>
+  <br>
+  <br>
+  <label class="field_question" for="date">Date (MM/DD/YYYY)</label>
+  <br>
+  <br>
+  <input class="field_data" name="date" type="text" required>
+  
+
+
+  <h3>Comments</h3>
+ <!-- <label class="field_question" for="comments"></notes>
+  <br>
+  <br> -->
+  <textarea class="field_data" name="comments" rows="12" cols="90"></textarea>
+  <br>
+  <br>
+  <br>
+  <input class="submit" type="submit" value="Create New Interaction"> 
+</form>

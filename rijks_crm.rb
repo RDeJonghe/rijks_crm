@@ -171,6 +171,10 @@ helpers do
     @clients.any?
   end
 
+  def interactions?
+    @interactions.any?
+  end
+
   def email?
     @current_client[:email].size > 0
   end
@@ -192,6 +196,10 @@ helpers do
 
   def last_name_comma_first_name(client)
     "#{client[:client_last]}, #{client[:client_first]}"
+  end
+
+  def interaction_date_client_type(interaction)
+    "#{interaction[:date]} - #{interaction[:type]} - #{interaction[:client_last]}, #{interaction[:client_first]}"
   end
 
   def artist_full_name
@@ -276,11 +284,25 @@ post '/clients/:client_num' do
 end
 
 get '/interactions' do
+  @interactions = session[:interactions].sort_by { |interaction| interaction[:date] }
+
   erb :interactions
 end
 
 get '/interactions/interaction_new' do
   erb :interaction_new
+end
+
+post '/interactions' do
+  session[:interactions] << {
+    id: SecureRandom.hex(10),
+    date: params[:date],
+    client_first: params[:client_first].capitalize.strip,
+    client_last: params[:client_last].capitalize.strip,
+    type: params[:type],
+    comments: params[:comments]
+  }
+  redirect '/interactions'
 end
 
 get '/inventory' do
