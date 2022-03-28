@@ -254,7 +254,6 @@ end
 get '/clients/:client_num/edit' do
   @client_num = params[:client_num]
   @current_client = find_current_client
-  puts @current_client[:notes]
 
   erb :client_edit
 end
