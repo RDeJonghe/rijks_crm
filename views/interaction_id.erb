@@ -1,6 +1,16 @@
 <!-- page for single interaction info -->
 
-<h2>Interaction Information</h2>
-<p><%= @current_interaction %></p>
+<h2>
+Interaction Information
+<a class="right" href="/interactions"><button>All Interactions</button></a>
+</h2>
 
-<p><%= @interaction_id %></p>
+<h3>Date</h3>
+  <p><%= @current_interaction[:date] %></p>
+<h3>Name</h3>
+  <p><%= @current_interaction[:client_last] %>, <%= @current_interaction[:client_first] %></p>
+<h3>Type</h3>
+  <p><%= @current_interaction[:type] %></p>
+<h3>Comments</h3>
+  <p><%= @current_interaction[:comments] %></p>
+
