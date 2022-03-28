@@ -100,11 +100,11 @@ p {
 
 .list_item {
   color: black;
-  list-style-type: '$ ';
+  list-style-type: '>> ';
 }
 
 .list_item:hover {
-  color: green;
+  color: #2779BF;
 }
 
 .name_list {
@@ -121,7 +121,14 @@ h3 {
 
 /* test formatting for contact info page to make 2 columsn */
 
-#second_col {
+/* REMOVE */
+/* #second_col {
   float: right;
   margin-right: 800px;
-}
+} */
+
+/* image for the unordered lists for artists and works, paintbrush image */
+
+/* .paintbrush {
+  list-style-image: url('../icons')
+} */
