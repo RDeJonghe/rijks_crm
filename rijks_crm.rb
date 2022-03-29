@@ -259,7 +259,7 @@ post '/clients' do
       city: params[:city],
       state: params[:state],
       postal: params[:postal]
-    },
+    }
   }
   redirect '/clients'
 end
