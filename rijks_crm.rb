@@ -36,7 +36,6 @@ end
 def matching_clients(query)
   results = []
 
-  # can maybe remove this by making the field required
   return results if !query || query.empty?
 
   session[:clients].each do |client| 
