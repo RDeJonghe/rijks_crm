@@ -1,0 +1,21 @@
+<h2>Search Clients</h2>
+
+<form action="/search" method="get">
+  <input class="field_data" name="query" value="<%= params[:query] %>"/>
+  <button type="submit">Search</button>
+</form>
+
+<% if params[:query] %>
+  <% if @results.empty? %>
+    <p>Sorry, no matches were found.</p>
+  <% else %>
+    <h3>Results for '<%= params[:query]%>'</h3>
+
+    <ul>
+      <% @results.each do |result| %>
+        <%= puts result %>
+        <li class="list_item"><a class="name_list" href="/clients/<%= result[:client_num] %>"><%= result[:client_full] %></a></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

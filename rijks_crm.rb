@@ -33,6 +33,21 @@ def find_current_interaction
   .first
 end
 
+def matching_clients(query)
+  results = []
+
+  # can maybe remove this by making the field required
+  return results if !query || query.empty?
+
+  session[:clients].each do |client| 
+    if client[:client_full].downcase =~ Regexp.new(query.downcase)
+      results << { client_full: client[:client_full], client_num: client[:client_num] }
+    end
+  end
+
+  results
+end
+
 class Bosch
   BOSCH_API_CALL = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Jheronimus+Bosch&imgonly=True&p=0-9999&s=chronologic')
 
@@ -241,6 +256,7 @@ post '/clients' do
     client_num: SecureRandom.hex(10),
     client_first: params[:client_first].capitalize.strip,
     client_last: params[:client_last].capitalize.strip,
+    client_full: "#{params[:client_first].capitalize.strip} #{params[:client_last].capitalize.strip}",
     email: params[:email],
     phone: params[:phone],
     address: { 
@@ -339,7 +355,6 @@ get '/inventory/:artist_abrv' do
   erb :works
 end
 
-
 get '/inventory/:artist_abrv/:work_id' do
   @artist_abrv = params[:artist_abrv]
   work_id = params[:work_id]
@@ -360,6 +375,13 @@ get '/inventory/:artist_abrv/:work_id' do
 
   erb :work_id
 end
+
+get '/search' do
+  @results = matching_clients(params[:query])
+
+  erb :search
+end
+
 get '/admin' do
   erb :admin
 end
