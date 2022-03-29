@@ -27,10 +27,3 @@
     <p><%= "#{@current_client[:address][:city]}, #{@current_client[:address][:state]}" %></p>
     <p><%= @current_client[:address][:postal] %></p>
   <% end %>
-<h3>Notes</h3>
-  <% if !notes? %>
-    <p>No notes file.</p>
-  <% else %>
-    <p><%= @current_client[:notes] %></p>
-  <% end %>
-<p><%= @current_client %></p>

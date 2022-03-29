@@ -212,9 +212,10 @@ helpers do
     (@current_client[:address][:postal].size > 0)
   end
 
-  def notes?
-    @current_client[:notes].size > 0
-  end
+  # SHOULD NO LONGER BE NEEDED. NOTES REMOVED
+  # def notes?
+  #   @current_client[:notes].size > 0
+  # end
 
   def last_name_comma_first_name(client)
     "#{client[:client_last]}, #{client[:client_first]}"
