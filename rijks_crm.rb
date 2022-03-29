@@ -329,11 +329,10 @@ get '/interactions/:interaction_id' do
   erb :interaction_id
 end
 
-# delete interaction functionality
-
 post '/interactions/:interaction_id/destroy' do
-  @interaction_id = params[:interaction_id]
-  session[:interactions].reject! { |interaction| interaction[:id] == @interaction_id }
+  session[:interactions].reject! do |interaction|
+    interaction[:id] == params[:interaction_id]
+  end
 
   redirect '/interactions'
 end
