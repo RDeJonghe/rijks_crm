@@ -5,16 +5,16 @@
 </h2>
 <form action="/interactions" method="POST">
   <h3>Interaction Information</h3>
-  <label class="field_question" for="client_first">First Name</label>
+
+  <label class="field_question" for="full_name_list">Name of Client</label>
   <br>
   <br>
-  <input class="field_data" name="client_first" type="text" required>
-  <br>
-  <br>
-  <label class="field_question" for="client_last">Last Name</label>
-  <br>
-  <br>
-  <input class="field_data" name="client_last" type="text" required>
+  <input class="field_data" type="text" list="full_name_list" name="full_name">
+  <datalist id="full_name_list">
+  <% @all_clients_full_names.each do |name| %>
+    <option value="<%= name %>"></option>
+  <% end %>
+  </datalist>
   <br>
   <br>
 

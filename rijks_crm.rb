@@ -47,6 +47,12 @@ def matching_clients(query)
   results
 end
 
+def clients_full_name_interaction
+  @all_clients.each_with_object([]) do |client, results|
+    results << client[:client_full]
+  end
+end
+
 class Bosch
   BOSCH_API_CALL = HTTParty.get('https://www.rijksmuseum.nl/api/en/collection?key=ME1aaDBz&involvedMaker=Jheronimus+Bosch&imgonly=True&p=0-9999&s=chronologic')
 
@@ -216,7 +222,7 @@ helpers do
   end
 
   def interaction_date_client_type(interaction)
-    "#{interaction[:date]} - #{interaction[:type]} - #{interaction[:client_last]}, #{interaction[:client_first]}"
+    "#{interaction[:date]} - #{interaction[:type]} - #{interaction[:client_full]}"
   end
 
   def artist_full_name
@@ -306,6 +312,9 @@ get '/interactions' do
 end
 
 get '/interactions/interaction_new' do
+  @all_clients = session[:clients]
+  @all_clients_full_names = clients_full_name_interaction
+
   erb :interaction_new
 end
 
@@ -313,8 +322,7 @@ post '/interactions' do
   session[:interactions] << {
     id: SecureRandom.hex(10),
     date: params[:date],
-    client_first: params[:client_first].capitalize.strip,
-    client_last: params[:client_last].capitalize.strip,
+    client_full: params[:full_name],
     type: params[:type],
     comments: params[:comments]
   }
