@@ -65,6 +65,12 @@ h2 {
   padding-right: 10px;
 }
 
+/* # format same as the .right class, but it is separate so that jquery can confirm form submission, so this class is used to identify just delete/destroy actions so a confirmation window will appear */
+.delete {
+  float: right;
+  padding-right: 10px;
+}
+
 /* Formatting for paragraph info to make all paragraphs standard */
 
 p {

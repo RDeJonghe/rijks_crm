@@ -212,11 +212,6 @@ helpers do
     (@current_client[:address][:postal].size > 0)
   end
 
-  # SHOULD NO LONGER BE NEEDED. NOTES REMOVED
-  # def notes?
-  #   @current_client[:notes].size > 0
-  # end
-
   def last_name_comma_first_name(client)
     "#{client[:client_last]}, #{client[:client_first]}"
   end
@@ -266,7 +261,6 @@ post '/clients' do
       state: params[:state],
       postal: params[:postal]
     },
-    notes: params[:notes]
   }
   redirect '/clients'
 end
@@ -302,7 +296,6 @@ post '/clients/:client_num' do
   @current_client[:address][:city] = params[:city]
   @current_client[:address][:state] = params[:state]
   @current_client[:address][:postal] = params[:postal]
-  @current_client[:notes] = params[:notes]
 
   redirect "/clients/#{@client_num}"
 end
@@ -334,6 +327,15 @@ get '/interactions/:interaction_id' do
   @current_interaction = find_current_interaction
 
   erb :interaction_id
+end
+
+# delete interaction functionality
+
+post '/interactions/:interaction_id/destroy' do
+  @interaction_id = params[:interaction_id]
+  session[:interactions].reject! { |interaction| interaction[:id] == @interaction_id }
+
+  redirect '/interactions'
 end
 
 get '/inventory' do
