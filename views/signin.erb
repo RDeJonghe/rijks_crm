@@ -2,7 +2,7 @@
 
 <h2>Sign In</h2>
 <% if session[:message] == "Invalid credentials" %>
-  <p><%= session[:message] %>, try again</p>
+  <p class="message"><%= session[:message] %>, try again</p>
 <% end %>
 
 <form method="post" action="/admin/signin">

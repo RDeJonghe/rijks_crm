@@ -142,7 +142,6 @@ h3 {
 
 /* formatting for the work of art page with painting image */
 
-
 .painting {
   /* display: inline-block; */
   float: right;
@@ -161,4 +160,19 @@ h3 {
   float: left;
   width: 400px;
   /* margin-left: 20px; */
+}
+
+/* formatting for messages that appear for sign in */
+
+.message {
+  background-color: darkgrey;
+  color: white;
+  padding: 10px;
+}
+
+.caution {
+  font-style: italic;
+  background-color: #2779BF;;
+  color: white;
+  padding: 10px;
 }

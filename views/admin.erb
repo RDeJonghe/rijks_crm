@@ -3,13 +3,13 @@
 <h2>Administration</h2>
 
 <% if session[:message] == "You have been signed out." %>
-  <p><%= session[:message] %></p>
+  <p class="message"><%= session[:message] %></p>
 <% end %>
 
 <% if session[:username] %>
 <h3>Sign In</h3>
   <form method="post" action="/admin/signout">
-    <p>Signed in as <%= session[:username] %></p>
+    <p class="message">Signed in as <%= session[:username] %></p>
     <button class="submit" type="submit">Sign Out</button>
   </form>
 <% else %>
@@ -24,7 +24,7 @@
     There are no clients to delete.
   </p>
 <% else %>
-  <p>Caution: You are in administrative mode selecting a client will delete their record.</p>
+  <p class="caution">Caution: You are in administrative mode selecting a client will delete their record!</p>
   <ul>
   <% @clients.each do |client| %>
     <li class="list_item"><a class="name_list" href='/clients/<%= client[:client_num] %>/destroy'><%= last_name_comma_first_name(client) %></a></li>
