@@ -2,4 +2,16 @@
 
 <h2>Administration</h2>
 
-<p>Administration features coming soon...</p>
+<% if session[:message] == "You have been signed out." %>
+  <p><%= session[:message] %></p>
+<% end %>
+
+<% if session[:username] %>
+<h3>Sign In</h3>
+  <form method="post" action="/admin/signout">
+    <p>Signed in as <%= session[:username] %></p>
+    <button class="submit" type="submit">Sign Out</button>
+  </form>
+<% else %>
+  <p><a href="/admin/signin"><button>Sign In</button></a></p>
+<% end %>

@@ -394,3 +394,25 @@ end
 get '/admin' do
   erb :admin
 end
+
+get '/admin/signin' do
+  erb :signin
+end
+
+post '/admin/signin' do
+  if params[:password] == "secret"
+    session[:username] = params[:username]
+    session[:message] = "Welcome!"
+    redirect "/admin"
+  else
+    session[:message] = "Invalid credentials"
+    status 422
+    erb :signin
+  end
+end
+
+post '/admin/signout' do
+  session.delete(:username)
+  session[:message] = "You have been signed out."
+  redirect "/admin"
+end

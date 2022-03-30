@@ -1,0 +1,22 @@
+<!-- page with sign in actions -->
+
+<h2>Sign In</h2>
+<% if session[:message] == "Invalid credentials" %>
+  <p><%= session[:message] %>, try again</p>
+<% end %>
+
+<form method="post" action="/admin/signin">
+  <label class="field_question" for="username"> Username: </label>
+  <br>
+  <br>
+  <input class="field_data" name="username" id="username" value="<%= params[:username] %>"/>
+  <br>
+  <br>
+  <label class="field_question" for="password"> Password: </label>
+  <br>
+  <br>
+  <input class="field_data" type="password" id="password" name="password" />
+  <br>
+  <br>
+  <button class="submit" type="submit">Sign In</button>
+</form>
