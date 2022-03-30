@@ -121,6 +121,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  bundle lock remote: --add-platform x86_64-linux
 
 DEPENDENCIES
   better_html
