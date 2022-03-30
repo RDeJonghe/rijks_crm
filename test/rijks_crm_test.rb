@@ -1,9 +1,5 @@
 ENV["RACK_ENV"] = 'test'
 
-# THIS WORKS BUT REPLACED BY IF STATEMENT
-# require 'simplecov'
-# SimpleCov.start
-
 if ENV['RACK_ENV'] == 'test'
   require 'simplecov'
   SimpleCov.start
@@ -18,8 +14,12 @@ require 'rack/test'
 
 require_relative '../rijks_crm'
 
+# Maybe do a set up of an environment with a client, an interaction, etc.
+
 class RijksCrmTest < Minitest::Test
   include Rack::Test::Methods
+
+  # This is needed for testing - check LS lesson
 
   def app
     Sinatra::Application
@@ -134,5 +134,62 @@ class RijksCrmTest < Minitest::Test
     skip
     assert_equal "1506 - 1578", Bosch.new.produced("en-RP-P-1963-630")
   end
+
+  # TESTING SIGN IN
+
+  def test_signin_with_bad_credentials
+    skip
+    post "/admin/signin", username: "guest", password: "admin"
+    assert_equal 422, last_response.status
+    assert_includes last_response.body, "Invalid credentials"
+  end
+
+  # TESTS REDIRECTION AFTER SIGNING OUT
+
+  def test_signout
+    skip
+    post "/admin/signin", username: "user", password: "orange"
+
+    post "/admin/signout"
+    
+    get '/'
+    assert_equal 302, last_response.status
+  end
+
+  # TESTS POST ROUTE
+
+  # This test will return a string saying you can't create interactions without the client first created. Works correctly message shows.
+
+  def test_post_interactions_without_created_client
+    skip
+    post '/interactions', id: "12345", date: "03/30/2022", client_full: "Joe Jones", type: "Email", comments: "Sent message"
+    get '/interactions'
+    assert_includes last_response.body, "Interactions need a client to be linked to. There are no clients."
+  end
+
+  # This test is similar to above test but it will first create a client. With an existing client it will then create an interaction successfully. This will test that the listing of interactions includes this new interaction (but this is not the page for the actual interaction details)
+
+  def test_post_interactions_with_created_client
+    skip
+    post '/clients', client_num: "99999", client_first: "Joe", client_last: "Jones"
+    post '/interactions', date: "03/30/2022", full_name: "Joe Jones", type: "Email", comments: "Sent message"
+    get '/interactions'
+    assert_includes last_response.body, "Joe Jones"
+    assert_includes last_response.body, "03/30/2022"
+    assert_includes last_response.body, "Email"
+  end
+
+  # This test is to test a created client. The client is created and the client page list is checked to make sure they appear on it with the format of first, last.
+
+  def test_post_created_client
+    skip
+    post '/clients', client_num: "99999", client_first: "Joe", client_last: "Jones"
+    get '/clients'
+    assert_includes last_response.body, "Jones, Joe"
+  end
 end
+
+
+
+
 
