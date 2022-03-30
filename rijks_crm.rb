@@ -392,6 +392,8 @@ get '/search' do
 end
 
 get '/admin' do
+  @clients = session[:clients].sort_by { |client| [client[:client_last], client[:client_first]] }
+
   erb :admin
 end
 
@@ -400,7 +402,7 @@ get '/admin/signin' do
 end
 
 post '/admin/signin' do
-  if params[:password] == "secret"
+  if params[:password] == "orange"
     session[:username] = params[:username]
     session[:message] = "Welcome!"
     redirect "/admin"
@@ -415,4 +417,12 @@ post '/admin/signout' do
   session.delete(:username)
   session[:message] = "You have been signed out."
   redirect "/admin"
+end
+
+get '/clients/:client_num/destroy' do
+  session[:clients].reject! do |client|
+    client[:client_num] == params[:client_num]
+  end
+
+  redirect '/admin'
 end

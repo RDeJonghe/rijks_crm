@@ -15,3 +15,20 @@
 <% else %>
   <p><a href="/admin/signin"><button>Sign In</button></a></p>
 <% end %>
+
+
+<% if session[:username] %>
+<h3>Delete Clients</h3>
+<% if !clients? %>
+  <p>
+    There are no clients to delete.
+  </p>
+<% else %>
+  <p>Caution: You are in administrative mode selecting a client will delete their record.</p>
+  <ul>
+  <% @clients.each do |client| %>
+    <li class="list_item"><a class="name_list" href='/clients/<%= client[:client_num] %>/destroy'><%= last_name_comma_first_name(client) %></a></li>
+  <% end %>
+  </ul>
+<% end %>
+<% end %>
