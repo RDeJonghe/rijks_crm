@@ -403,7 +403,7 @@ get '/admin/signin' do
 end
 
 post '/admin/signin' do
-  if params[:password] == "orange"
+  if (params[:username].size >= 1) && (params[:password] == "orange")
     session[:username] = params[:username]
     session[:message] = "Welcome!"
     redirect "/admin"
