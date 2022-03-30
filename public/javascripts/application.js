@@ -4,7 +4,7 @@ $(function() {
     event.preventDefault();
     event.stopPropagation();
 
-    var ok = confirm("Are you sure? This cannot be undone!");
+    var ok = confirm("Confirm the permanent deletion of this interaction:");
     if (ok) {
       this.submit();
     }
