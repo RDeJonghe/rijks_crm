@@ -306,6 +306,7 @@ post '/clients/:client_num' do
 end
 
 get '/interactions' do
+  @clients = session[:clients].sort_by { |client| [client[:client_last], client[:client_first]] }
   @interactions = session[:interactions].sort_by { |interaction| interaction[:date] }
 
   erb :interactions

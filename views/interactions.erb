@@ -5,14 +5,18 @@
   <a class="right" href="/interactions/interaction_new"><button>Create New Interaction</button></a>
 </h2>
 
-<% if !interactions? %>
-  <p>
-    There are no interactions, create a new interaction.
-  </p>
+<% if !clients? %>
+  <p>Interactions need a client to be linked to. There are no clients. First create clients and after interactions can be created for the clients.</p>
 <% else %>
-  <ul>
-  <% @interactions.each do |interaction| %>
-    <li class="list_item"><a class="name_list" href='/interactions/<%= interaction[:id] %>'><%= interaction_date_client_type(interaction) %></li>
+  <% if !interactions? %>
+    <p>
+      There are no interactions, create a new interaction.
+    </p>
+  <% else %>
+    <ul>
+    <% @interactions.each do |interaction| %>
+      <li class="list_item"><a class="name_list" href='/interactions/<%= interaction[:id] %>'><%= interaction_date_client_type(interaction) %></li>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
 <% end %>
