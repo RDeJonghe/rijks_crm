@@ -296,6 +296,11 @@ class RijksCrmTest < Minitest::Test
     post "/clients/#{client_num}", client_first: "Joseph", client_last: "Jonez", email: "mrjones@gmail.com", phone: "999-999-9999", street: "999 Bay Drive", city: "San Diego", state: "CA", postal: "98765"
 
     get "clients/#{client_num}"
+    assert_equal 200, last_response.status
+    assert_equal "text/html;charset=utf-8", last_response["Content-Type"]
+    
+    # note - you can print out the response body if you need to see in terminal
+    puts last_response.headers
 
     assert_includes last_response.body, "Joseph"
     assert_includes last_response.body, "Jonez"
